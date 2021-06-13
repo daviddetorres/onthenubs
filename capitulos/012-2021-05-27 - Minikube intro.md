@@ -1,11 +1,14 @@
-# 2021-05-27 - Introducción a MiniKube
+# Capitulo #12 (27-5-2021)
+[Escúchalo aquí](https://youtu.be/noeYhRUXrgw).
+
+## 2021-05-27 - Introducción a MiniKube
 
 En este episodio hemos hecho una introducción a MiniKube, una versión ligera de Kubernetes, ideal para aprender y hacer pruebas en local.
 
 En concreto, hemos convertido una aplicación PHP en un contenedor, la hemos desplegado en Docker, y luego en MiniKube.
 
 
-## ¿Qué son los contenedores?
+### ¿Qué son los contenedores?
 
 Paquetes que encapsulan los archivos y recursos de una aplicación, junto con las instrucciones para ejecutarla.
 
@@ -14,7 +17,7 @@ Los contenedores tienen dos principales ventajas:
 - Si funciona en local, funciona en producción. Ya que la configuración para ejecutar es la misma.
 - Los programas están aislados dentro de su contenedor. Si hackean un contenedor, no tienen acceso inmediato a todo el servidor.
 
-## Diferencias entre contenedores y máquinas virtuales.
+### Diferencias entre contenedores y máquinas virtuales.
 
 Las máquinas virtuales también comparten estas ventajas, sin embargo ejecutan un sistema operativo completo, mientras que el contenedor se ejecuta normalmente en el mismo sistema huesped.
 
@@ -23,14 +26,14 @@ Una máquina virtual necesita más recursos.
 Por otro lado, al contener un sistema operativo completo tienen una carga extra de mantenimiento. No solo hay que actualizar y asegurar la aplicación, si no todos los binarios que se incluyen en su sistema operativo.
 
 
-## Imágenes vs. contenedores en ejecución
+### Imágenes vs. contenedores en ejecución
 
 Primero "cocinamos" la imágen de un contenedor.
 
 Esa imágen la podemos ejecutar varias veces, teniendo varias instancias del mismo programa en ejecución.
 
 
-## Requisitos
+### Requisitos
 
 Para poder seguir los pasos de la demo, tienes que:
 
@@ -39,7 +42,7 @@ Para poder seguir los pasos de la demo, tienes que:
 3. Instalar [Minikube](https://minikube.sigs.k8s.io/docs/start/).
 
 
-## Creando una imagen de contenedor
+### Creando una imagen de contenedor
 
 En `php-container` está todo lo necesario para construir el contenedor que hemos usado en el capítulo de hoy.
 
@@ -80,7 +83,7 @@ Con `--name` indicamos cómo queremos identificar al nuevo contenedor en ejecuci
 Por último `my-php-app` es el nombre de la imagen a ejecutar.
 
 
-## Los problemas de usar Docker "a pelo"
+### Los problemas de usar Docker "a pelo"
 
 Con las instrucciones anteriores ya lo tenemos. Accedemos a `localhost:80` y vemos nuestra aplicación ejecutándose.
 
@@ -97,7 +100,7 @@ A Kubernetes le damos nuestro estado deseado: "Quiero 3 servidores web, un balan
 Por ejemplo, si un nodo falla y sus contenedores ya no están disponibles, Kubernetes inicia nuevos contenedores en el resto de nodos para compensar la carga desaparecida.
 
 
-## Desplegando nuestro contenedor en Kubernetes.
+### Desplegando nuestro contenedor en Kubernetes.
 
 Antes de continuar asegúrate de que el contenedor de Docker ya no se está ejecutando.
 
@@ -108,7 +111,7 @@ De esta forma evitamos instalar cosas raras en nuestro ordenador principal, y po
 En un entorno de producción lo más normal es que instalásemos Kubernetes sin una máquina virtual.
 
 
-### Iniciando el cluster Kubernetes
+#### Iniciando el cluster Kubernetes
 
 Para iniciar el cluster de Kubernetes hacemoss:
 
@@ -120,7 +123,7 @@ minikube start
 Es posible que minikube se queje de que las instrucciones de virtualización no están activadas. Si estás seguro de que están activadas, puede que se trate de un bug, prueba usando la opción `--no-vtx-check` así: `minikube start --no-vtx-check`.
 
 
-### Usando un repositorio local
+#### Usando un repositorio local
 
 Lo normal es que el ordenador en el que se desarrolla un contenedor, no sea el mismo en el que se ejecuta. Un desarrollador programa en su ordenador, pero luego se usa un servidor para desplegar en producción.
 
@@ -147,7 +150,7 @@ docker build -t my-php-app .
 ```
 
 
-## Desplegando nuestra imágen
+### Desplegando nuestra imágen
 
 Si ejecutamos:
 

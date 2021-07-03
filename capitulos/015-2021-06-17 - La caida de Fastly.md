@@ -1,5 +1,5 @@
 # Capitulo #15 (17-6-2021)
-[Escúchalo aquí](https://youtu.be/raukRcuDHTc) (próximamente).
+[Escúchalo aquí](https://www.youtube.com/channel/UCvsEafNhlOEd5OZJFbVg0-g) (próximamente).
 
 Hablamos de la caída de Fastly del 8 de Junio 2021 que afectó a medio internet. 
 
